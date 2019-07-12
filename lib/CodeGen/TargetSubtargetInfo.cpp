@@ -20,7 +20,7 @@
 #include "llvm/Support/Format.h"
 #include "llvm/Support/raw_ostream.h"
 #include <string>
-
+#include<iostream>
 using namespace llvm;
 
 TargetSubtargetInfo::TargetSubtargetInfo(
@@ -30,7 +30,8 @@ TargetSubtargetInfo::TargetSubtargetInfo(
     const MCWriteLatencyEntry *WL, const MCReadAdvanceEntry *RA,
     const InstrStage *IS, const unsigned *OC, const unsigned *FP)
     : MCSubtargetInfo(TT, CPU, FS, PF, PD, ProcSched, WPR, WL, RA, IS, OC, FP) {
-}
+	std::cout<<"In CodeGen/TargetSubTargetInfo.cpp constructor \n";
+    }
 
 TargetSubtargetInfo::~TargetSubtargetInfo() = default;
 

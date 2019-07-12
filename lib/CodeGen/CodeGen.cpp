@@ -15,7 +15,7 @@
 #include "llvm-c/Initialization.h"
 #include "llvm/InitializePasses.h"
 #include "llvm/PassRegistry.h"
-
+#include<iostream>
 using namespace llvm;
 
 /// initializeCodeGen - Initialize all passes linked into the CodeGen library.
@@ -112,5 +112,6 @@ void llvm::initializeCodeGen(PassRegistry &Registry) {
 }
 
 void LLVMInitializeCodeGen(LLVMPassRegistryRef R) {
+	std::cout<<"In CodeGen/CodeGen.cpp file LLVMInitializeCodeGen \n";
   initializeCodeGen(*unwrap(R));
 }

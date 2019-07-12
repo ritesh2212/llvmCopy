@@ -1,0 +1,13 @@
+[component_0]
+type = TargetGroup
+name = NPEngine
+parent = Target
+
+
+[component_1]
+type = Library
+name = NPEngineCodeGen
+parent = NPEngine
+required_libraries = CodeGen MC  
+   SelectionDAG Support Target
+add_to_library_groups = NPEngine

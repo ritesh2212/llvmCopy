@@ -30,7 +30,7 @@
 #include "llvm/Support/Timer.h"
 #include "llvm/Support/raw_ostream.h"
 #include <cassert>
-
+#include<iostream>
 using namespace llvm;
 
 #define DEBUG_TYPE "regalloc"
@@ -57,6 +57,7 @@ void RegAllocBase::anchor() {}
 void RegAllocBase::init(VirtRegMap &vrm,
                         LiveIntervals &lis,
                         LiveRegMatrix &mat) {
+	std::cout<<"In CodeGen/RegAllocBase init function \n";
   TRI = &vrm.getTargetRegInfo();
   MRI = &vrm.getRegInfo();
   VRM = &vrm;

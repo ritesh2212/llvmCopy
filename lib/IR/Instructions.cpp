@@ -42,7 +42,7 @@
 #include <cassert>
 #include <cstdint>
 #include <vector>
-
+#include<iostream>
 using namespace llvm;
 
 //===----------------------------------------------------------------------===//
@@ -2074,6 +2074,7 @@ BinaryOperator::BinaryOperator(BinaryOps iType, Value *S1, Value *S2,
                 OperandTraits<BinaryOperator>::op_begin(this),
                 OperandTraits<BinaryOperator>::operands(this),
                 InsertBefore) {
+	  std::cout<<"IR/Instructions.cpp -------> BinaryOp; InsertBefore\n";
   Op<0>() = S1;
   Op<1>() = S2;
   setName(Name);
@@ -2087,14 +2088,17 @@ BinaryOperator::BinaryOperator(BinaryOps iType, Value *S1, Value *S2,
                 OperandTraits<BinaryOperator>::op_begin(this),
                 OperandTraits<BinaryOperator>::operands(this),
                 InsertAtEnd) {
-  Op<0>() = S1;
+  std::cout<<"IR/Instructions.cpp -------> BinaryOp; InsertAfter\n";
+	  Op<0>() = S1;
   Op<1>() = S2;
   setName(Name);
   AssertOK();
 }
 
 void BinaryOperator::AssertOK() {
-  Value *LHS = getOperand(0), *RHS = getOperand(1);
+	std::cout<<"In IR/Instructions.cpp -------> AssertOK()\n";
+	llvm::errs() <<"Akash here!\n";
+	Value *LHS = getOperand(0), *RHS = getOperand(1);
   (void)LHS; (void)RHS; // Silence warnings.
   assert(LHS->getType() == RHS->getType() &&
          "Binary operator operand types must match!");

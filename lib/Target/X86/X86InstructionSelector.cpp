@@ -45,7 +45,7 @@
 #include <cassert>
 #include <cstdint>
 #include <tuple>
-
+#include <iostream>
 #define DEBUG_TYPE "X86-isel"
 
 using namespace llvm;
@@ -1075,7 +1075,7 @@ bool X86InstructionSelector::selectUadde(MachineInstr &I,
                                          MachineRegisterInfo &MRI,
                                          MachineFunction &MF) const {
   assert((I.getOpcode() == TargetOpcode::G_UADDE) && "unexpected instruction");
-
+	std::cout<<"X86/X86InstructionSelector.cpp --->> selectUadde function \n";
   const unsigned DstReg = I.getOperand(0).getReg();
   const unsigned CarryOutReg = I.getOperand(1).getReg();
   const unsigned Op0Reg = I.getOperand(2).getReg();

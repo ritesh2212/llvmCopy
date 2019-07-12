@@ -1,0 +1,15 @@
+[common]
+subdirectories = MCTargetDesc InstPrinter TargetInfo
+[component_0]
+type = TargetGroup
+name = TOY
+parent = Target
+
+
+[component_1]
+type = Library
+name = TOYCodeGen
+parent = TOY
+required_libraries = CodeGen MC  
+   SelectionDAG Support Target
+add_to_library_groups = TOY

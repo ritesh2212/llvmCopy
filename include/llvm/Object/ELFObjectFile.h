@@ -1049,6 +1049,8 @@ StringRef ELFObjectFile<ELFT>::getFileFormatName() const {
       return "ELF32-sparc";
     case ELF::EM_AMDGPU:
       return "ELF32-amdgpu";
+    case ELF::EM_CPU0:        // llvm-objdump -t -r
+      return "ELF32-cpu0";
     default:
       return "ELF32-unknown";
     }
@@ -1074,6 +1076,8 @@ StringRef ELFObjectFile<ELFT>::getFileFormatName() const {
       return "ELF64-amdgpu";
     case ELF::EM_BPF:
       return "ELF64-BPF";
+    case ELF::EM_TOY:
+    	return "ELF64-toy";
     default:
       return "ELF64-unknown";
     }
@@ -1107,6 +1111,14 @@ template <class ELFT> Triple::ArchType ELFObjectFile<ELFT>::getArch() const {
       return IsLittleEndian ? Triple::mipsel : Triple::mips;
     case ELF::ELFCLASS64:
       return IsLittleEndian ? Triple::mips64el : Triple::mips64;
+    default:
+      report_fatal_error("Invalid ELFCLASS!");
+    }
+  case ELF::EM_CPU0:  // llvm-objdump -t -r
+    switch (EF.getHeader()->e_ident[ELF::EI_CLASS]) {
+    case ELF::ELFCLASS32:
+    //return IsLittleEndian ? Triple::cpu0el : 
+    return Triple::cpu0;
     default:
       report_fatal_error("Invalid ELFCLASS!");
     }
@@ -1151,7 +1163,6 @@ template <class ELFT> Triple::ArchType ELFObjectFile<ELFT>::getArch() const {
 
   case ELF::EM_BPF:
     return IsLittleEndian ? Triple::bpfel : Triple::bpfeb;
-
   default:
     return Triple::UnknownArch;
   }

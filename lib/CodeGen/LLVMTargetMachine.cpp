@@ -33,6 +33,7 @@
 #include "llvm/Target/TargetLoweringObjectFile.h"
 #include "llvm/Target/TargetMachine.h"
 #include "llvm/Target/TargetOptions.h"
+#include<iostream>
 using namespace llvm;
 
 static cl::opt<bool> EnableTrapUnreachable("trap-unreachable",
@@ -40,6 +41,7 @@ static cl::opt<bool> EnableTrapUnreachable("trap-unreachable",
   cl::desc("Enable generating trap for unreachable"));
 
 void LLVMTargetMachine::initAsmInfo() {
+ std::cout<<"In LLVMTargetMachine initAsmINfo\n ";
   MRI.reset(TheTarget.createMCRegInfo(getTargetTriple().str()));
   MII.reset(TheTarget.createMCInstrInfo());
   // FIXME: Having an MCSubtargetInfo on the target machine is a hack due
@@ -81,6 +83,7 @@ LLVMTargetMachine::LLVMTargetMachine(const Target &T,
                                      Reloc::Model RM, CodeModel::Model CM,
                                      CodeGenOpt::Level OL)
     : TargetMachine(T, DataLayoutString, TT, CPU, FS, Options) {
+  std::cout<<"In LLVMTargetMachine constructor\n";
   this->RM = RM;
   this->CMModel = CM;
   this->OptLevel = OL;

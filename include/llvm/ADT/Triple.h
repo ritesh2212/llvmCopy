@@ -95,7 +95,11 @@ public:
     wasm64,         // WebAssembly with 64-bit pointers
     renderscript32, // 32-bit RenderScript
     renderscript64, // 64-bit RenderScript
-    LastArchType = renderscript64
+    LastArchType = renderscript64,
+    cpu0,
+    //cpu0el,
+    toy             // TOY :toy
+  
   };
   enum SubArchType {
     NoSubArch,

@@ -312,6 +312,8 @@ enum {
   EM_RISCV = 243,         // RISC-V
   EM_LANAI = 244,         // Lanai 32-bit processor
   EM_BPF = 247,           // Linux kernel bpf virtual machine
+  EM_TOY = 248,           // For dummy Target
+  EM_CPU0 = 249           // For Cpu0
 };
 
 // Object file classes.
@@ -384,7 +386,13 @@ enum {
   // 0 for unspecified or not using any features affected by the differences.
   EF_PPC64_ABI = 3
 };
-
+// Cpu0 Specific e_flags
+enum {
+  EF_CPU0_NOREORDER = 0x00000001, // Don't reorder instructions
+  EF_CPU0_PIC       = 0x00000002, // Position independent code
+  EF_CPU0_ARCH_32   = 0x50000000, // CPU032 instruction set per linux not elf.h
+  EF_CPU0_ARCH      = 0xf0000000  // Mask for applying EF_CPU0_ARCH_ variant
+};
 // Special values for the st_other field in the symbol table entry for PPC64.
 enum {
   STO_PPC64_LOCAL_BIT = 5,
@@ -410,7 +418,10 @@ enum {
 enum {
 #include "ELFRelocs/AArch64.def"
 };
-
+// ELF Relocation types for Cpu0
+enum {
+#include "ELFRelocs/Cpu0.def"
+};
 // ARM Specific e_flags
 enum : unsigned {
   EF_ARM_SOFT_FLOAT = 0x00000200U,     // Legacy pre EABI_VER5

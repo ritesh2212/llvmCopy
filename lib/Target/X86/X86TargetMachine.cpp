@@ -47,9 +47,9 @@
 #include "llvm/Target/TargetOptions.h"
 #include <memory>
 #include <string>
-
+#include<iostream>
 using namespace llvm;
-
+static int i=0;
 static cl::opt<bool> EnableMachineCombinerPass("x86-machine-combiner",
                                cl::desc("Enable the machine combiner pass"),
                                cl::init(true), cl::Hidden);
@@ -61,6 +61,7 @@ static cl::opt<bool> EnableCondBrFoldingPass("x86-condbr-folding",
 
 extern "C" void LLVMInitializeX86Target() {
   // Register the target.
+  std::cout<<"Now we are in Target machine file 767658787...... "<<i++<<std::endl;
   RegisterTargetMachine<X86TargetMachine> X(getTheX86_32Target());
   RegisterTargetMachine<X86TargetMachine> Y(getTheX86_64Target());
 
@@ -225,6 +226,7 @@ X86TargetMachine::X86TargetMachine(const Target &T, const Triple &TT,
   // The check here for 64-bit windows is a bit icky, but as we're unlikely
   // to ever want to mix 32 and 64-bit windows code in a single module
   // this should be fine.
+  std::cout<<"X86TargetMachine --->> In the constructor class !! \n";
   if ((TT.isOSWindows() && TT.getArch() == Triple::x86_64) || TT.isPS4() ||
       TT.isOSBinFormatMachO()) {
     this->Options.TrapUnreachable = true;

@@ -295,9 +295,13 @@ public:
     VK_AMDGPU_REL32_LO,      // symbol@rel32@lo
     VK_AMDGPU_REL32_HI,      // symbol@rel32@hi
     VK_AMDGPU_REL64,         // symbol@rel64
+    
 
     VK_TPREL,
-    VK_DTPREL
+    VK_DTPREL,
+
+    VK_TOY_LO,  // For dummy target
+    VK_TOY_HI
   };
 
 private:

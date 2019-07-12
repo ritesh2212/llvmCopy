@@ -41,6 +41,8 @@
 #include "llvm/MC/MCSymbol.h"
 #include "llvm/Support/ErrorHandling.h"
 #include "llvm/Target/TargetOptions.h"
+#include <iostream>
+
 using namespace llvm;
 
 namespace {
@@ -2614,6 +2616,7 @@ bool X86FastISel::TryEmitSmallMemcpy(X86AddressMode DestAM,
 
 bool X86FastISel::fastLowerIntrinsicCall(const IntrinsicInst *II) {
   // FIXME: Handle more intrinsics.
+	std::cout<<"in X86/FastIsel.cpp---------------->> fastLowerInstrinsicCall() \n";
   switch (II->getIntrinsicID()) {
   default: return false;
   case Intrinsic::convert_from_fp16:

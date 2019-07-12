@@ -19,6 +19,7 @@
 #include "llvm/IR/MDBuilder.h"
 #include "llvm/IR/Operator.h"
 #include "llvm/IR/Type.h"
+#include <iostream>
 using namespace llvm;
 
 Instruction::Instruction(Type *ty, unsigned it, Use *Ops, unsigned NumOps,
@@ -307,7 +308,7 @@ const char *Instruction::getOpcodeName(unsigned OpCode) {
   case FNeg: return "fneg";
 
   // Standard binary operators...
-  case Add: return "add";
+  case Add: std::cout<<"In IR/Instruction.cpp ----------------------->>>> getOpcodeName() for add\n ";return "add";
   case FAdd: return "fadd";
   case Sub: return "sub";
   case FSub: return "fsub";

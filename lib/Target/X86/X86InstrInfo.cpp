@@ -40,7 +40,7 @@
 #include "llvm/Support/ErrorHandling.h"
 #include "llvm/Support/raw_ostream.h"
 #include "llvm/Target/TargetOptions.h"
-
+#include <iostream>
 using namespace llvm;
 
 #define DEBUG_TYPE "x86-instr-info"
@@ -803,6 +803,9 @@ MachineInstr *X86InstrInfo::convertToThreeAddressWithLEA(
   assert((!Is16BitOp || RegInfo.getTargetRegisterInfo()->getRegSizeInBits(
               *RegInfo.getRegClass(MI.getOperand(0).getReg())) == 16) &&
          "Unexpected type for LEA transform");
+  
+  
+  std::cout<<"X86/X86InstrInfo.cpp ---->>LEA \n";
 
   // TODO: For a 32-bit target, we need to adjust the LEA variables with
   // something like this:
@@ -927,6 +930,7 @@ X86InstrInfo::convertToThreeAddress(MachineFunction::iterator &MFI,
   // The following opcodes also sets the condition code register(s). Only
   // convert them to equivalent lea if the condition code register def's
   // are dead!
+	std::cout<<"Trace came to X86/X86InstrInfo.cpp file ---->> function is convertToThreeAddress\n";
   if (hasLiveCondCodeDef(MI))
     return nullptr;
 
