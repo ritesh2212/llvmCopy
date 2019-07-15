@@ -1,7 +1,0 @@
-[common]
-subdirectories = TargetInfo
-[component_0]
-type = TargetGroup
-name = BARE
-parent = Target
-
