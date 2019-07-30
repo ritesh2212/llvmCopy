@@ -4628,6 +4628,9 @@ const ToolChain &Driver::getToolChain(const ArgList &Args,
       case llvm::Triple::lanai:
         TC = llvm::make_unique<toolchains::LanaiToolChain>(*this, Target, Args);
         break;
+      //case llvm::Triple::cpu0:
+        // TC = llvm::make_unique<toolchains::Cpu0ToolChain>(*this, Target, Args);
+         //break;
       case llvm::Triple::xcore:
         TC = llvm::make_unique<toolchains::XCoreToolChain>(*this, Target, Args);
         break;

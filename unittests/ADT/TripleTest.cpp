@@ -295,6 +295,17 @@ TEST(TripleTest, ParsedIDs) {
   EXPECT_EQ(Triple::UnknownOS, T.getOS());
   EXPECT_EQ(Triple::UnknownEnvironment, T.getEnvironment());
 
+
+  T = Triple("cpu0");
+    EXPECT_EQ(Triple::cpu0, T.getArch());
+    EXPECT_EQ(Triple::UnknownVendor, T.getVendor());
+    EXPECT_EQ(Triple::UnknownOS, T.getOS());
+    EXPECT_EQ(Triple::UnknownEnvironment, T.getEnvironment());
+ 
+
+
+
+
   T = Triple("amdgcn-mesa-mesa3d");
   EXPECT_EQ(Triple::amdgcn, T.getArch());
   EXPECT_EQ(Triple::Mesa, T.getVendor());
@@ -862,6 +873,14 @@ TEST(TripleTest, BitWidthPredicates) {
   EXPECT_TRUE(T.isArch32Bit());
   EXPECT_FALSE(T.isArch64Bit());
 
+  T.setArch(Triple::cpu0);
+    EXPECT_FALSE(T.isArch16Bit());
+    EXPECT_TRUE(T.isArch32Bit());
+    EXPECT_FALSE(T.isArch64Bit());
+
+
+
+
   T.setArch(Triple::riscv32);
   EXPECT_FALSE(T.isArch16Bit());
   EXPECT_TRUE(T.isArch32Bit());
@@ -1107,6 +1126,10 @@ TEST(TripleTest, EndianArchVariants) {
   T.setArch(Triple::lanai);
   EXPECT_EQ(Triple::lanai, T.getBigEndianArchVariant().getArch());
   EXPECT_EQ(Triple::UnknownArch, T.getLittleEndianArchVariant().getArch());
+
+T.setArch(Triple::cpu0);
+   EXPECT_EQ(Triple::cpu0, T.getBigEndianArchVariant().getArch());
+   EXPECT_EQ(Triple::UnknownArch, T.getLittleEndianArchVariant().getArch());
 
   T.setArch(Triple::tcele);
   EXPECT_EQ(Triple::tce, T.getBigEndianArchVariant().getArch());

@@ -17,11 +17,17 @@
 
 #include "MCTargetDesc/Cpu0MCTargetDesc.h"
 #include "llvm/Target/TargetMachine.h"
+#include "llvm/Pass.h"
+
 
 namespace llvm {
-  class Cpu0TargetMachine;
-  class FunctionPass;
-  Target &getTheCpu0Target();
+	class Cpu0TargetMachine;
+	class FunctionPass;
+	class formatted_raw_ostream;
+	// createCpu0ISelDag - This pass converts a legalized DAG into a
+	// Cpu0-specific DAG, ready for instruction scheduling.0
+	FunctionPass *createCpu0ISelDag(Cpu0TargetMachine &TM);
+//	Target &getTheCpu0Target();
 } // end namespace llvm;
 
 #endif

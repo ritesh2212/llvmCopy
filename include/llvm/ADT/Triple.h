@@ -17,7 +17,6 @@
 #undef NetBSD
 #undef mips
 #undef sparc
-
 namespace llvm {
 
 /// Triple - Helper class for working with autoconf configuration names. For
@@ -91,12 +90,13 @@ public:
     kalimba,        // Kalimba: generic kalimba
     shave,          // SHAVE: Movidius vector VLIW processors
     lanai,          // Lanai: Lanai 32-bit
+    cpu0,           // Cpu0
     wasm32,         // WebAssembly with 32-bit pointers
     wasm64,         // WebAssembly with 64-bit pointers
     renderscript32, // 32-bit RenderScript
     renderscript64, // 64-bit RenderScript
     LastArchType = renderscript64,
-    cpu0,
+   // cpu0,
     //cpu0el,
     toy             // TOY :toy
   

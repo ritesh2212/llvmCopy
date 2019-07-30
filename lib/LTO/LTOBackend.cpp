@@ -42,7 +42,7 @@
 #include "llvm/Transforms/Scalar/LoopPassManager.h"
 #include "llvm/Transforms/Utils/FunctionImportUtils.h"
 #include "llvm/Transforms/Utils/SplitModule.h"
-
+#include<iostream>
 using namespace llvm;
 using namespace lto;
 
@@ -125,7 +125,10 @@ namespace {
 
 std::unique_ptr<TargetMachine>
 createTargetMachine(Config &Conf, const Target *TheTarget, Module &M) {
-  StringRef TheTriple = M.getTargetTriple();
+  
+
+std::cout<<"!!@!@!@!@!@!In LTO header!@!@!@!@"<<std::endl;
+StringRef TheTriple = M.getTargetTriple();
   SubtargetFeatures Features;
   Features.getDefaultSubtargetFeatures(Triple(TheTriple));
   for (const std::string &A : Conf.MAttrs)

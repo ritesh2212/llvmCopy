@@ -13,6 +13,7 @@
 #include "llvm/Support/raw_ostream.h"
 #include <cassert>
 #include <vector>
+#include<iostream>
 using namespace llvm;
 
 // Clients are responsible for avoid race conditions in registration.
@@ -56,7 +57,7 @@ const Target *TargetRegistry::lookupTarget(const std::string &ArchName,
       return nullptr;
     }
   }
-
+  std::cout<<"Lookup Target returns "<<TheTarget<<std::endl; 
   return TheTarget;
 }
 

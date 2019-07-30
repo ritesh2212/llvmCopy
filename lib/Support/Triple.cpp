@@ -1495,6 +1495,7 @@ Triple Triple::getLittleEndianArchVariant() const {
   switch (getArch()) {
   case Triple::UnknownArch:
   case Triple::lanai:
+  case Triple::cpu0:
   case Triple::ppc:
   case Triple::sparcv9:
   case Triple::systemz:

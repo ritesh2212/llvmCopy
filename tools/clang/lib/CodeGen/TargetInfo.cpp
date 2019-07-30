@@ -7550,7 +7550,47 @@ public:
       : TargetCodeGenInfo(new LanaiABIInfo(CGT)) {}
 };
 }
+//===---------------------------------------------------------------------===//
+//Cpu0
+//===--------------------------------------------------------------------===//
+namespace {
+ class Cpu0ABIInfo : public DefaultABIInfo {
+ public:
+   Cpu0ABIInfo(CodeGen::CodeGenTypes &CGT) : DefaultABIInfo(CGT) {}
+ 
+ /*  bool shouldUseInReg(QualType Ty, CCState &State) const;
+ 
+   void computeInfo(CGFunctionInfo &FI) const override {
+     CCState State(FI.getCallingConvention());
+     // Lanai uses 4 registers to pass arguments unless the function has the
+     // regparm attribute set.
+     if (FI.getHasRegParm()) {
+       State.FreeRegs = FI.getRegParm();
+     } else {
+      State.FreeRegs = 4;
+     }
+ 
+     if (!getCXXABI().classifyReturnType(FI))
+       FI.getReturnInfo() = classifyReturnType(FI.getReturnType());
+     for (auto &I : FI.arguments())
+       I.info = classifyArgumentType(I.type, State);
+   }
+ 
+   ABIArgInfo getIndirectResult(QualType Ty, bool ByVal, CCState &State) const;
+   ABIArgInfo classifyArgumentType(QualType RetTy, CCState &State) const;
+*/
+ };
+} // end anonymous namespace
 
+
+
+namespace{
+class Cpu0TargetCodeGenInfo : public TargetCodeGenInfo {
+ public:
+   Cpu0TargetCodeGenInfo(CodeGen::CodeGenTypes &CGT)
+       : TargetCodeGenInfo(new Cpu0ABIInfo(CGT)) {}
+ };
+}
 //===----------------------------------------------------------------------===//
 // AMDGPU ABI Implementation
 //===----------------------------------------------------------------------===//
@@ -9416,6 +9456,8 @@ const TargetCodeGenInfo &CodeGenModule::getTargetCodeGenInfo() {
     return SetCGInfo(new HexagonTargetCodeGenInfo(Types));
   case llvm::Triple::lanai:
     return SetCGInfo(new LanaiTargetCodeGenInfo(Types));
+ case llvm::Triple::cpu0:
+   return SetCGInfo(new Cpu0TargetCodeGenInfo(Types));
   case llvm::Triple::r600:
     return SetCGInfo(new AMDGPUTargetCodeGenInfo(Types));
   case llvm::Triple::amdgcn:

@@ -39,8 +39,8 @@ TargetMachine::TargetMachine(const Target &T, StringRef DataLayoutString,
     : TheTarget(T), DL(DataLayoutString), TargetTriple(TT), TargetCPU(CPU),
       TargetFS(FS), AsmInfo(nullptr), MRI(nullptr), MII(nullptr), STI(nullptr),
       RequireStructuredCFG(false), DefaultOptions(Options), Options(Options) {
-		std::cout<<"In TargetMachine constructor!!@!!!!@!!\n";
-		std::cout<<"The target is "<<&T<<" in Target/TargetMachine.cpp file \n";
+		errs()<<"In TargetMachine constructor!!@!!!!@!!\n";
+		errs()<<"The target is "<<&T<<" in Target/TargetMachine.cpp file \n";
       }
 
 TargetMachine::~TargetMachine() = default;

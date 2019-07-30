@@ -52,6 +52,7 @@
 #include "llvm/Target/TargetMachine.h"
 #include "llvm/Transforms/Utils/Cloning.h"
 #include <memory>
+#include<iostream>
 using namespace llvm;
 
 // General options for llc.  Other pass-specific options are specified
@@ -454,7 +455,8 @@ static int compileModule(char **argv, LLVMContext &Context) {
   std::unique_ptr<TargetMachine> Target(TheTarget->createTargetMachine(
       TheTriple.getTriple(), CPUStr, FeaturesStr, Options, getRelocModel(),
       getCodeModel(), OLvl));
-
+  std::cout<<"!!!!!!!!!!!!!!!!!!!!!!!!!The target is "<<&Target<<std::endl;
+ //errs()<<Target;
   assert(Target && "Could not allocate target machine!");
 
   // If we don't have a module then just exit now. We do this down

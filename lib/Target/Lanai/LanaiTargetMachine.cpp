@@ -23,7 +23,7 @@
 #include "llvm/Support/FormattedStream.h"
 #include "llvm/Support/TargetRegistry.h"
 #include "llvm/Target/TargetOptions.h"
-
+#include<iostream>
 using namespace llvm;
 
 namespace llvm {
@@ -66,6 +66,7 @@ LanaiTargetMachine::LanaiTargetMachine(const Target &T, const Triple &TT,
       Subtarget(TT, Cpu, FeatureString, *this, Options, getCodeModel(),
                 OptLevel),
       TLOF(new LanaiTargetObjectFile()) {
+	std::cout<<"dfgdrgdghdththrthrthrhtgt5ggergret\n";
   initAsmInfo();
 }
 

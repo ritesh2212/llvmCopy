@@ -13,7 +13,7 @@
 //===----------------------------------------------------------------------===//
 
 #include "Targets.h"
-
+#include "Targets/Cpu0.h"
 #include "Targets/AArch64.h"
 #include "Targets/AMDGPU.h"
 #include "Targets/ARC.h"
@@ -136,6 +136,8 @@ TargetInfo *AllocateTarget(const llvm::Triple &Triple,
   case llvm::Triple::lanai:
     return new LanaiTargetInfo(Triple, Opts);
 
+  case llvm::Triple::cpu0:
+	return new Cpu0TargetInfo(Triple,Opts);
   case llvm::Triple::aarch64:
     if (Triple.isOSDarwin())
       return new DarwinAArch64TargetInfo(Triple, Opts);
